@@ -1,7 +1,6 @@
 [workspace]
-members = ["web"]
-resolver = "2"
+members = ["web", "vector"]
+resolver = "3"
 
-# (optional) keep versions consistent while still allowing per-crate overrides
 [workspace.dependencies]
 anyhow = "1.0.99"
