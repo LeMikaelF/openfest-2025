@@ -1,0 +1,177 @@
+[
+  {
+    "author": "ylink-lfs",
+    "prs_closed": 44,
+    "avg_h_to_close": 174.4,
+    "p50_h_to_close": 18.3,
+    "cum_share_pct": 5.5
+  },
+  {
+    "author": "pohly",
+    "prs_closed": 40,
+    "avg_h_to_close": 73.8,
+    "p50_h_to_close": 16.8,
+    "cum_share_pct": 10.5
+  },
+  {
+    "author": "serathius",
+    "prs_closed": 37,
+    "avg_h_to_close": 60.8,
+    "p50_h_to_close": 24.5,
+    "cum_share_pct": 15.1
+  },
+  {
+    "author": "PatrickLaabs",
+    "prs_closed": 35,
+    "avg_h_to_close": 105.8,
+    "p50_h_to_close": 13,
+    "cum_share_pct": 19.5
+  },
+  {
+    "author": "dims",
+    "prs_closed": 20,
+    "avg_h_to_close": 37.9,
+    "p50_h_to_close": 12.1,
+    "cum_share_pct": 22
+  },
+  {
+    "author": "BenTheElder",
+    "prs_closed": 15,
+    "avg_h_to_close": 107,
+    "p50_h_to_close": 17.9,
+    "cum_share_pct": 23.9
+  },
+  {
+    "author": "macsko",
+    "prs_closed": 15,
+    "avg_h_to_close": 110.6,
+    "p50_h_to_close": 40.9,
+    "cum_share_pct": 25.8
+  },
+  {
+    "author": "saschagrunert",
+    "prs_closed": 15,
+    "avg_h_to_close": 529.1,
+    "p50_h_to_close": 419.2,
+    "cum_share_pct": 27.7
+  },
+  {
+    "author": "HirazawaUi",
+    "prs_closed": 13,
+    "avg_h_to_close": 182,
+    "p50_h_to_close": 135.6,
+    "cum_share_pct": 29.3
+  },
+  {
+    "author": "bart0sh",
+    "prs_closed": 13,
+    "avg_h_to_close": 221.9,
+    "p50_h_to_close": 92.8,
+    "cum_share_pct": 30.9
+  },
+  {
+    "author": "carlory",
+    "prs_closed": 13,
+    "avg_h_to_close": 109.6,
+    "p50_h_to_close": 32.7,
+    "cum_share_pct": 32.5
+  },
+  {
+    "author": "yongruilin",
+    "prs_closed": 13,
+    "avg_h_to_close": 45.4,
+    "p50_h_to_close": 6,
+    "cum_share_pct": 34.2
+  },
+  {
+    "author": "cpanato",
+    "prs_closed": 12,
+    "avg_h_to_close": 187.7,
+    "p50_h_to_close": 8.7,
+    "cum_share_pct": 35.7
+  },
+  {
+    "author": "liggitt",
+    "prs_closed": 12,
+    "avg_h_to_close": 359.5,
+    "p50_h_to_close": 172.8,
+    "cum_share_pct": 37.2
+  },
+  {
+    "author": "natasha41575",
+    "prs_closed": 11,
+    "avg_h_to_close": 130.6,
+    "p50_h_to_close": 81.2,
+    "cum_share_pct": 38.5
+  },
+  {
+    "author": "mimowo",
+    "prs_closed": 10,
+    "avg_h_to_close": 73.5,
+    "p50_h_to_close": 37.3,
+    "cum_share_pct": 39.8
+  },
+  {
+    "author": "pacoxu",
+    "prs_closed": 10,
+    "avg_h_to_close": 49.9,
+    "p50_h_to_close": 27.8,
+    "cum_share_pct": 41.1
+  },
+  {
+    "author": "aditigupta96",
+    "prs_closed": 9,
+    "avg_h_to_close": 114.1,
+    "p50_h_to_close": 121.3,
+    "cum_share_pct": 42.2
+  },
+  {
+    "author": "akintunero",
+    "prs_closed": 9,
+    "avg_h_to_close": 111.2,
+    "p50_h_to_close": 30.7,
+    "cum_share_pct": 43.3
+  },
+  {
+    "author": "aramase",
+    "prs_closed": 9,
+    "avg_h_to_close": 146.3,
+    "p50_h_to_close": 71.9,
+    "cum_share_pct": 44.4
+  },
+  {
+    "author": "ffromani",
+    "prs_closed": 9,
+    "avg_h_to_close": 181.5,
+    "p50_h_to_close": 130.9,
+    "cum_share_pct": 45.6
+  },
+  {
+    "author": "danwinship",
+    "prs_closed": 8,
+    "avg_h_to_close": 149.5,
+    "p50_h_to_close": 62,
+    "cum_share_pct": 46.6
+  },
+  {
+    "author": "p0lyn0mial",
+    "prs_closed": 8,
+    "avg_h_to_close": 177.1,
+    "p50_h_to_close": 102.6,
+    "cum_share_pct": 47.6
+  },
+  {
+    "author": "sanposhiho",
+    "prs_closed": 8,
+    "avg_h_to_close": 127.1,
+    "p50_h_to_close": 9.4,
+    "cum_share_pct": 48.6
+  },
+  {
+    "author": "tallclair",
+    "prs_closed": 8,
+    "avg_h_to_close": 291.9,
+    "p50_h_to_close": 32.5,
+    "cum_share_pct": 49.6
+  }
+]
