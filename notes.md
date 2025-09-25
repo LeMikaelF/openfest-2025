@@ -1,9 +1,4 @@
-```
-.mode json
-.mode markdown
-.output myfile.db
+# To do before talk
 
-.vacuum into mybackup.db
+- Set GH token in shell
 
-.session open main mysession
-```
