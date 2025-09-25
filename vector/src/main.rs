@@ -75,6 +75,7 @@ fn main() -> Result<()> {
     )?;
 
     for s in TITLES.iter() {
+        // get embeddings from model
         let embedding = embed_text(&http, ollama_url, model, s)?;
         anyhow::ensure!(
             embedding.len() == 384,
@@ -114,25 +115,6 @@ fn main() -> Result<()> {
         }
         println!("{rank:>2}. d={dist:.3}  {title}");
         rank += 1;
-    }
-
-    // ---- 4) run “similar-to” (threshold) ----
-    let eps = 0.12;
-    let threshold = nearest + eps;
-    println!("\n=== Similar-to (distance ≤ best + {eps:.2} → {threshold:.3}) ===");
-    let mut sim = db.prepare(
-        "select title, vec_distance_cosine(embedding, vec_f32(?1)) as dist
-           from vec_demo
-          where dist <= ?2
-          order by dist",
-    )?;
-    let mut rows = sim.query(params![&formatted_vector, threshold])?;
-    let mut n = 0;
-    while let Some(r) = rows.next()? {
-        let title: String = r.get(0)?;
-        let dist: f64 = r.get(1)?;
-        n += 1;
-        println!("{n:>2}. d={dist:.3}  {title}");
     }
 
     Ok(())

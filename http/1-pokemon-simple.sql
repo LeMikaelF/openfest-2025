@@ -19,5 +19,5 @@ SELECT
   json_extract(value, '$.name') AS name,
   json_extract(value, '$.url') AS url
 FROM all_rows
-LIMIT 1;
+LIMIT 10;
 
