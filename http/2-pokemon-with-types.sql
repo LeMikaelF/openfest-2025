@@ -28,7 +28,7 @@ FROM (
     http_get_body(json_extract(r.value, '$.url'), (SELECT hdr FROM constants)),
     '$.types'
   ) AS t
-  LIMIT 10
+  LIMIT 20
 )
 GROUP BY name;
 
