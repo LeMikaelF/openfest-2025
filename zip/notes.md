@@ -9,5 +9,7 @@ WITH contents(name, data) AS (
 )
 SELECT writefile('test.zip', zipfile(name, data)) FROM contents;
 
+.system open test.zip
+
 sqlite3 zip/aoptalk.zip
 ```
