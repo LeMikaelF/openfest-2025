@@ -23,7 +23,9 @@ struct OllamaEmbedResp {
     embedding: Vec<f32>,
 }
 
-//TODO say the names of a few titles
+const MODEL: &str = "all-minilm";
+const OLLAMA_URL: &str = "http://localhost:11434";
+
 const TITLES: [&str; 12] = [
     "React state management patterns for shared components",
     "Using CSS Grid for responsive dashboard layouts",
@@ -39,10 +41,10 @@ const TITLES: [&str; 12] = [
     "RAG: chunking, embeddings, and prompt assembly",
 ];
 
-fn embed_text(client: &Client, base: &str, model: &str, text: &str) -> Result<Vec<f32>> {
+fn embed_text(client: &Client, base: &str, text: &str) -> Result<Vec<f32>> {
     let url = format!("{base}/api/embeddings");
     let req = OllamaEmbedReq {
-        model,
+        model: MODEL,
         prompt: text,
     };
     let resp = client.post(&url).json(&req).send()?.error_for_status()?;
@@ -52,11 +54,6 @@ fn embed_text(client: &Client, base: &str, model: &str, text: &str) -> Result<Ve
 
 fn main() -> Result<()> {
     autoload_sqlite_vec();
-
-    //TODO make this a more obvious constant
-    let query = "databases";
-    let model = "all-minilm";
-    let ollama_url = "http://localhost:11434";
 
     let http = Client::builder().timeout(Duration::from_secs(60)).build()?;
 
@@ -71,26 +68,27 @@ fn main() -> Result<()> {
         ",
     )?;
 
-    let mut insert_statement = db.prepare(
-        "insert into vec_demo(embedding, title)
-         values (vec_f32(?1), ?2)",
-    )?;
-
     for s in TITLES.iter() {
-        // get embeddings from model
-        //TODO see if I can inline this to make it more readable
-        let embedding = embed_text(&http, ollama_url, model, s)?;
+        let embedding = embed_text(&http, OLLAMA_URL, s)?;
         anyhow::ensure!(
             embedding.len() == 384,
             "embedding dimension changed: {}",
             embedding.len()
         );
-        insert_statement.execute(params![serde_json::to_string(&embedding)?, s])?;
+        db.execute(
+            r"
+            insert into vec_demo(embedding, title)
+            values (vec_f32(?1), ?2)
+            ",
+            params![serde_json::to_string(&embedding)?, s],
+        )?;
     }
 
+    let query = "databases"; // This is out query
+
     // ---- 3) run KNN (top-K) ----
-    println!("🧪 query: {query:?}   model: {model}\n");
-    let embedding = embed_text(&http, ollama_url, model, query)?;
+    println!("🧪 query: {query:?}   model: {MODEL}\n");
+    let embedding = embed_text(&http, OLLAMA_URL, query)?;
     let formatted_vector = serde_json::to_string(&embedding)?;
 
     println!("=== Top-K (KNN) ===");
@@ -101,14 +99,10 @@ fn main() -> Result<()> {
            order by distance",
     )?;
     let mut rows = knn.query([&formatted_vector])?;
-    let mut nearest = f64::INFINITY;
     let mut rank = 1;
     while let Some(r) = rows.next()? {
         let title: String = r.get(0)?;
         let dist: f64 = r.get(1)?;
-        if dist < nearest {
-            nearest = dist;
-        }
         println!("{rank:>2}. d={dist:.3}  {title}");
         rank += 1;
     }
