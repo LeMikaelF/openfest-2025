@@ -55,6 +55,9 @@ fn embed_text(client: &Client, base: &str, text: &str) -> Result<Vec<f32>> {
 fn main() -> Result<()> {
     autoload_sqlite_vec();
 
+    let query = std::env::args()
+        .next_back()
+        .expect("missing query string");
     let http = Client::builder().timeout(Duration::from_secs(60)).build()?;
 
     let db = Connection::open_in_memory()?;
@@ -84,11 +87,9 @@ fn main() -> Result<()> {
         )?;
     }
 
-    let query = "databases"; // This is our query
-
     // ---- 3) run KNN (top-K) ----
     println!("🧪 query: {query:?}   model: {MODEL}\n");
-    let embedding = embed_text(&http, OLLAMA_URL, query)?;
+    let embedding = embed_text(&http, OLLAMA_URL, &query)?;
     let formatted_vector = serde_json::to_string(&embedding)?;
 
     println!("=== Top-K (KNN) ===");
