@@ -23,6 +23,7 @@ struct OllamaEmbedResp {
     embedding: Vec<f32>,
 }
 
+//TODO say the names of a few titles
 const TITLES: [&str; 12] = [
     "React state management patterns for shared components",
     "Using CSS Grid for responsive dashboard layouts",
@@ -52,6 +53,7 @@ fn embed_text(client: &Client, base: &str, model: &str, text: &str) -> Result<Ve
 fn main() -> Result<()> {
     autoload_sqlite_vec();
 
+    //TODO make this a more obvious constant
     let query = "databases";
     let model = "all-minilm";
     let ollama_url = "http://localhost:11434";
@@ -76,6 +78,7 @@ fn main() -> Result<()> {
 
     for s in TITLES.iter() {
         // get embeddings from model
+        //TODO see if I can inline this to make it more readable
         let embedding = embed_text(&http, ollama_url, model, s)?;
         anyhow::ensure!(
             embedding.len() == 384,
@@ -83,13 +86,6 @@ fn main() -> Result<()> {
             embedding.len()
         );
         insert_statement.execute(params![serde_json::to_string(&embedding)?, s])?;
-    }
-
-    let mut binding = db.prepare("select title from vec_demo")?;
-    let mut x = binding.query([])?;
-    while let Some(row) = x.next()? {
-        let title: String = row.get(0)?;
-        println!("{title}");
     }
 
     // ---- 3) run KNN (top-K) ----
