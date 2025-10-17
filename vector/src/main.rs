@@ -62,7 +62,7 @@ fn main() -> Result<()> {
     db.execute_batch(
         r"
         create virtual table vec_demo using vec0(
-          embedding float[384],
+          embedding float[384] distance_metric=cosine,
           +title    text
         );
         ",
@@ -84,7 +84,7 @@ fn main() -> Result<()> {
         )?;
     }
 
-    let query = "databases"; // This is out query
+    let query = "databases"; // This is our query
 
     // ---- 3) run KNN (top-K) ----
     println!("🧪 query: {query:?}   model: {MODEL}\n");
